@@ -6,7 +6,7 @@ import webbrowser
 
 def github_oauth(client_id, client_secret, bridge_endpoint, timeout=60, poll_interval=2):
     bridge_request = get(urljoin(bridge_endpoint, 'register')).json()
-    redirect_url = bridge_request['redirect_url']
+    redirect_url = urljoin(bridge_endpoint, bridge_request['redirect_url'])
     state = bridge_request['state']
 
     user_url = "https://github.com/login/oauth/authorize" + \
